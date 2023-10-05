@@ -1,7 +1,7 @@
 
 let dataTable;
 let dataTableIsInitialized = false;
-const apiKey ='RGAPI-e8d41fc7-9dd1-49d9-9dde-c70635c209e3';
+const apiKey ='RGAPI-e335fd2a-092b-4cfb-a463-c93e6d38ed67';
 const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC'];
 const rol=['adc','suport','top','undefined','Mid','Comodin'];
 const summonerIdList = [];
