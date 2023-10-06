@@ -1,21 +1,56 @@
 
 let dataTable;
 let dataTableIsInitialized = false;
+const indice=1;
 const apiKey ='RGAPI-e335fd2a-092b-4cfb-a463-c93e6d38ed67';
-const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC'];
-const rol=['adc','suport','top','undefined','Mid','Comodin'];
+const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r'];
+const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top'];
 const summonerIdList = [];
+
 const summonersRank=[];
-queueType='RANKED_SOLO_5x5';
+const rankValues = {
+    "IRON": 1,
+    "BRONZE": 2,
+    "SILVER": 3,
+    "GOLD": 4,
+    "PLATINUM": 5,
+    "EMERALD":6,
+    "DIAMOND": 7,
+    "MASTER": 8,
+    "GRANDMASTER": 9,
+    "CHALLENGER": 10,
+};
+const rankElo={
+    "I":4,
+    "II":3,
+    "III":2,
+    "IV":1,
+};
 const dataTableOptions = {
     //scrollX: "2000px",
     lengthMenu: [5, 10, 15, 20, 100, 200, 500],
     columnDefs: [
+        //{targets: [2],visible: false, },
         { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6, 7 , 8] },
-        { orderable: false, targets: [5 , 6, 7 , 8] },
-        { searchable: false, targets: [1] }
-        
+        {orderable: false ,targets: [0, 1, 3, 4, 5, 6, 7 , 8]},
+        { searchable: false, targets: [1] },
+        {targets: [2],
+    render: function (data, type, row) {
+        const rankAndDivision = data.split(" ");
+        if (rankAndDivision.length === 3) {
+        const rank = rankAndDivision[0];
+        const division = rankAndDivision[1];
+        const points=rankAndDivision[2];
+        const rankValue = calculateRankValue(rank, division,points);
+        return rankValue;
+        }
+        return 0;
+    },
+    },
+
     ],
+    
+      
     pageLength: 10,
     destroy: true,
     language: {
@@ -90,10 +125,25 @@ async function getSummonerElo(summonerIdEncripted) {
         console.error(`Error al obtener los datos de elo para los invocadores: ${error.message}`);
     }
 }
+function calculateRankValue(rank, division, points) {
+    const rankValue = rankValues[rank] || 0;
+    const divisionValue = rankElo[division] || 0; // Extraer el número de la división
+    console.log(rank);
+    console.log(division);
+    console.log(rankValue * 10000 + divisionValue*100+points);
+    return rankValue * 10000 + divisionValue*100+points; // Multiplicamos por 100 para dar prioridad al rango sobre la división
+  }
+
+
+
+
+
+
 
 const initDataTable = async () => {
     if (dataTableIsInitialized) {
         dataTable.destroy();
+        indice=1;
     }
 
     await listUsers();
@@ -111,10 +161,10 @@ const listUsers = async () => {
                 const elo = eloData[0];
             content += `
                 <tr>
-                    <td>${index + 1}</td>
+                    <td>${index}</td>
                     <td>${elo.summonerName}</td>
-                    <td>${elo.summonerRol}</td>
-                    <td><img class="elo" src="images/lol/${elo.tier}.png" alt="" height="40px" width="40px"><br>${elo.tier} ${elo.leaguePoints}LP´S</td>
+                    <td>${elo.tier} ${elo.rank} ${elo.leaguePoints}</td>
+                    <td><img class="elo" src="images/lol/${elo.tier}.png" alt="" height="40px" width="40px"><br>${elo.tier} ${elo.rank} ${elo.leaguePoints}LP´S</td>
                     <td>${elo.wins+elo.losses}</td>
                     <td>${elo.wins}</td>
                     <td>${elo.losses}</td>
@@ -124,6 +174,7 @@ const listUsers = async () => {
 
                 </tr>`
                 ;
+                
         });
         tableBody_users.innerHTML = content;
     } catch (ex) {
