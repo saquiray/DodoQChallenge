@@ -1,7 +1,7 @@
 
 let dataTable;
 let dataTableIsInitialized = false;
-const indice=1;
+var indice=1;
 const apiKey ='RGAPI-e335fd2a-092b-4cfb-a463-c93e6d38ed67';
 const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r','Birtime'];
 const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top','suport'];
@@ -28,30 +28,18 @@ const rankElo={
 };
 const dataTableOptions = {
     //scrollX: "2000px",
+    responsive: true,
+    order: [[0, 'desc']],
     lengthMenu: [5, 10, 15, 20, 100, 200, 500],
     columnDefs: [
-        //{targets: [2],visible: false, },
+        {targets: [0],visible: false},
         { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6, 7 , 8] },
-        {orderable: false ,targets: [0, 1, 3, 4, 5, 6, 7 , 8]},
-        { searchable: false, targets: [1] },
-        {targets: [2],
-    render: function (data, type, row) {
-        const rankAndDivision = data.split(" ");
-        if (rankAndDivision.length === 3) {
-        const rank = rankAndDivision[0];
-        const division = rankAndDivision[1];
-        const points=rankAndDivision[2];
-        const rankValue = calculateRankValue(rank, division,points);
-        return rankValue;
-        }
-        return 0;
-    },
-    },
-
+        {orderable: false ,targets: [ 1 ,2, 3, 4, 5, 6, 7 , 8]},
+        { searchable: false, targets: [1] }
     ],
     
       
-    pageLength: 10,
+    pageLength: 20,
     destroy: true,
     language: {
         lengthMenu: "",
@@ -62,10 +50,10 @@ const dataTableOptions = {
         search: "Buscar:",
         loadingRecords: "Cargando...",
         paginate: {
-            first: "Primero",
-            last: "Último",
-            next: "Siguiente",
-            previous: "Anterior"
+            first: "",
+            last: "",
+            next: "",
+            previous: ""
         }
     }
 };
@@ -161,15 +149,15 @@ const listUsers = async () => {
                 const elo = eloData[0];
             content += `
                 <tr>
-                    <td>${index}</td>
+                    <td>${rankValues[elo.tier]}${rankElo[elo.rank]}${elo.leaguePoints}</td>
                     <td>${elo.summonerName}</td>
-                    <td>${elo.tier} ${elo.rank} ${elo.leaguePoints}</td>
-                    <td><img class="elo" src="images/lol/${elo.tier}.png" alt="" height="40px" width="40px"><br>${elo.tier} ${elo.rank} ${elo.leaguePoints}LP´S</td>
+                    <td>${elo.summonerRol}</td>
+                    <td><img class="elo" src="images/lol/${elo.tier}.png" alt="" height="50px" width="50px"><br>${elo.tier} ${elo.rank}<br>(${elo.leaguePoints} LP)</td>
                     <td>${elo.wins+elo.losses}</td>
                     <td>${elo.wins}</td>
                     <td>${elo.losses}</td>
                     <td>${Math.round(100*elo.wins/(elo.wins+elo.losses))}%</td>
-                    <td><a href="${elo.summonerstats}" target="_blank" style="color:#5383e8;">OP.GG</a></td>
+                    <td><a href="${elo.summonerstats}" target="_blank" class="gg" style="color:#5383e8;">OP.GG</a></td>
                     
 
                 </tr>`
@@ -186,4 +174,12 @@ window.addEventListener("load", async () => {
     await fetchSummonersData();
     await fetchSummonersElo();
     await initDataTable();
+    
+    console.log('La página se ha cargado completamente');
+    const preloader = document.querySelector('.preloader');
+    const content = document.querySelector('.content');
+    
+    preloader.style.display = 'none';
+    content.style.display = 'block';
 });
+
