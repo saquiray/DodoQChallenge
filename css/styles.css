@@ -1,9 +1,10 @@
 body {
     background: #3f3d3d; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #3f3d3d, #3f3d3d); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #3f3d3d, #3f3d3d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #242429, #18235b); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #242429, #18235b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     font-family: Arial, Helvetica, sans-serif;
     color: #ffffff;
+
 }
 
 .centered {
@@ -17,6 +18,7 @@ body {
     margin: 0px auto;
     background-color: black;
     border: 1px solid black;
+    
 }
 a {
     color: #3273dc;
@@ -42,9 +44,9 @@ th{
     width: 100% !important;
     --bs-table-striped-color: #ffffff !important;
 }.form-control {
-    color:#2e363c;
-    background-color: #3f3d3d;
-    border-bottom:2px solid #000000;
+    color:#ffffff;
+    background-color: #3f3d3d00;
+    border-bottom:2px solid #424141;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -81,6 +83,10 @@ th{
 
 .content {
     display: none;
+    background-image: url(../images/lol/soloqchallenge.png);
+    background-repeat: no-repeat;
+    background-position: center;
+ 
 }
 .form-control-sm {
    

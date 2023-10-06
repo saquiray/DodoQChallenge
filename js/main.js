@@ -2,7 +2,7 @@
 let dataTable;
 let dataTableIsInitialized = false;
 var indice=1;
-const apiKey ='RGAPI-e335fd2a-092b-4cfb-a463-c93e6d38ed67';
+const apiKey ='RGAPI-09edd6d3-c8ae-4ab8-850e-abaca7b52d60';
 const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r','Birtime'];
 const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top','suport'];
 const summonerIdList = [];
@@ -46,7 +46,7 @@ const dataTableOptions = {
         zeroRecords: "Ningún usuario encontrado",
         info: "",
         infoEmpty: "Ningún usuario encontrado",
-        infoFiltered: "(filtrados desde _MAX_ registros totales)",
+        infoFiltered: "(filtrados desde _MAX_ registros totale  s)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
         paginate: {
