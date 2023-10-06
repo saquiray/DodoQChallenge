@@ -3,8 +3,8 @@ let dataTable;
 let dataTableIsInitialized = false;
 const indice=1;
 const apiKey ='RGAPI-e335fd2a-092b-4cfb-a463-c93e6d38ed67';
-const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r'];
-const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top'];
+const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r','Birtime'];
+const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top','suport'];
 const summonerIdList = [];
 
 const summonersRank=[];
