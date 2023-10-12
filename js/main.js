@@ -2,7 +2,7 @@
 let dataTable;
 let dataTableIsInitialized = false;
 var indice=1;
-const apiKey ='RGAPI-09edd6d3-c8ae-4ab8-850e-abaca7b52d60';
+const apiKey ='RGAPI-da6e3f95-33a1-4daa-a183-d21033ffcf58';
 const summonerNames = ['GSK1ngs', 'No doy la Q','Alash','Señor Oso1','DancingBlades','FVC','STEPZ','Meflayer','Diego6u9r','Birtime'];
 const rol=['adc','suport','top','undefined','Mid','Comodin','comodin','nose','top','suport'];
 const summonerIdList = [];
